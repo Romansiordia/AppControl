@@ -1,0 +1,900 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>App Control - Inteligencia de Datos Pecuarios</title>
+    <!-- Carga de Tailwind CSS desde CDN para un solo archivo HTML -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Carga de la biblioteca Lucide para iconos -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        /* Configuración de fuente y efectos visuales */
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap');
+        body {
+            font-family: 'Inter', sans-serif;
+            scroll-behavior: smooth;
+        }
+        /* Estilos para que el menú móvil tenga una animación fluida */
+        .mobile-menu-open {
+            display: block;
+        }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-800">
+
+    <!-- --- NAV BAR --- -->
+    <nav id="navbar" class="fixed w-full z-50 bg-white/90 backdrop-blur-md border-b border-slate-200 shadow-sm">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <div class="flex items-center space-x-2">
+                    <div class="bg-blue-600 p-2 rounded-lg">
+                        <i data-lucide="activity" class="h-6 w-6 text-white"></i>
+                    </div>
+                    <span class="font-bold text-xl tracking-tight text-slate-2000">App<span class="text-cyan-600">Control</span></span>
+                </div>
+                
+                <!-- Desktop Menu -->
+                <div class="hidden md:flex space-x-8 items-center">
+                    <a href="#soluciones" class="text-slate-600 hover:text-blue-600 font-medium transition">Soluciones</a>
+                    <a href="#calidad" class="text-slate-600 hover:text-blue-600 font-medium transition">Calidad</a>
+                    <a href="#demo" class="text-slate-600 hover:text-blue-600 font-medium transition">Demo Visual</a>
+                    <a href="#contacto" class="bg-blue-600 hover:bg-blue-700 text-white px-5 py-2.5 rounded-full font-medium transition shadow-lg shadow-blue-600/20">
+                        Agendar Demo
+                    </a>
+                </div>
+
+                <!-- Mobile Menu Button -->
+                <div class="md:hidden">
+                    <button id="menu-button" class="text-slate-600 focus:outline-none">
+                        <i id="menu-icon-open" data-lucide="menu" class="h-6 w-6"></i>
+                        <i id="menu-icon-close" data-lucide="x" class="h-6 w-6 hidden"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="md:hidden hidden bg-white border-b border-slate-200" style="transition: all 0.3s ease-in-out;">
+            <div class="px-4 pt-2 pb-6 space-y-2">
+                <a href="#soluciones" class="block px-3 py-2 text-slate-600 font-medium hover:bg-slate-50 rounded-md">Soluciones</a>
+                <a href="#calidad" class="block px-3 py-2 text-slate-600 font-medium hover:bg-slate-50 rounded-md">Calidad</a>
+                <a href="#demo" class="block px-3 py-2 text-slate-600 font-medium hover:bg-slate-50 rounded-md">Demo Visual</a>
+                <a href="#contacto" class="w-full mt-4 bg-blue-600 text-white px-5 py-3 rounded-lg font-medium block text-center">
+                    Agendar Demo
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- --- HERO SECTION --- -->
+    <section class="pt-32 pb-20 lg:pt-40 lg:pb-28 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
+        <div class="grid lg:grid-cols-2 gap-12 items-center">
+            <div class="space-y-8">
+                <div class="inline-flex items-center space-x-2 bg-blue-50 text-blue-700 px-4 py-1.5 rounded-full text-sm font-semibold border border-blue-100">
+                    <span class="relative flex h-2 w-2">
+                        <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-blue-400 opacity-75"></span>
+                        <span class="relative inline-flex rounded-full h-2 w-2 bg-blue-500"></span>
+                    </span>
+                    <span>Software Especializado para Avicultura</span>
+                </div>
+                <h1 class="text-4xl lg:text-6xl font-extrabold text-slate-900 leading-tight">
+                    Transformamos datos en <span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-cyan-500">decisiones rentables</span>.
+                </h1>
+                <p class="text-lg text-slate-600 leading-relaxed max-w-lg">
+                    Optimiza la calidad del huevo y controla tus materias primas con nuestras plataformas de inteligencia: 
+                    <span class="font-semibold text-slate-800"> Egg Monitor</span> y <span class="font-semibold text-slate-800">Lab Advice</span>.
+                </p>
+                <div class="flex flex-col sm:flex-row gap-4">
+                    <a href="#soluciones" class="bg-slate-900 hover:bg-slate-800 text-white px-8 py-4 rounded-xl font-bold transition flex items-center justify-center space-x-2">
+                        <span>Ver Plataforma</span>
+                        <i data-lucide="arrow-right" class="h-5 w-5"></i>
+                    </a>
+                    <a href="#contacto" class="bg-white border border-slate-300 hover:bg-slate-50 text-slate-700 px-8 py-4 rounded-xl font-bold transition">
+                        Saber más
+                    </a>
+                </div>
+            </div>
+            
+            <!-- Imagen de la persona en la granja con tablet -->
+            <div class="relative">
+                <div class="absolute -inset-4 bg-gradient-to-r from-blue-100 to-amber-100 rounded-full opacity-50 blur-3xl"></div>
+                <div class="relative bg-white rounded-2xl shadow-2xl border border-slate-200 overflow-hidden">
+                    <div class="bg-slate-50 px-4 py-3 border-b border-slate-200 flex space-x-2">
+                        <div class="w-3 h-3 rounded-full bg-red-400"></div>
+                        <div class="w-3 h-3 rounded-full bg-amber-400"></div>
+                        <div class="w-3 h-3 rounded-full bg-green-400"></div>
+                    </div>
+                    <div class="p-0">
+                         <img
+                            src="https://www.premix.adm.com/wp-content/uploads/2022/07/female-worker-sterile-lab-clothing-shutterstock_1185787768-1-scaled-900x700.jpg	" 
+                            alt="Persona en granja tomando datos con tablet"
+                            class="w-full object-cover rounded-b-2xl max-h-[350px]"
+                         />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- --- SERVICES SUMMARY --- -->
+    <section id="soluciones" class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl font-bold text-slate-900">Nuestras Soluciones</h2>
+                <p class="mt-4 text-slate-600 max-w-2xl mx-auto">Dos aplicaciones especializadas que cubren el ciclo completo: desde el insumo hasta el producto final.</p>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-8">
+                <!-- Card 1 - Egg Monitor -->
+                <div class="group relative bg-slate-50 rounded-2xl border border-slate-200 hover:border-amber-400 transition-all hover:shadow-xl overflow-hidden">
+                    <div class="h-48 w-full overflow-hidden relative">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent z-10"></div>
+                        <img 
+                            src="https://images.unsplash.com/photo-1548550023-2bdb3c5beed7?auto=format&fit=crop&w=800&q=80" 
+                            alt="Gallinas ponedoras en granja" 
+                            class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                        />
+                        <div class="absolute bottom-4 left-6 z-20 text-white flex items-center">
+                            <i data-lucide="egg" class="text-amber-400 h-6 w-6 mr-2"></i>
+                            <span class="font-bold text-lg"></span>
+                        </div>
+                    </div>
+                    
+                    <div class="p-8">
+                        <div class="flex justify-between items-start mb-4">
+                            <h3 class="text-2xl font-bold text-slate-900">Egg Monitor</h3>
+                            <div class="bg-amber-100 p-2 rounded-lg">
+                                <i data-lucide="activity" class="text-amber-600 h-6 w-6"></i>
+                            </div>
+                        </div>
+                        <p class="text-slate-600 mb-6 leading-relaxed">
+                            Monitorea el comportamiento del peso, resistencia, grosor, Unidades Haugh y color de yema. Filtra por lote, edad y línea genética.
+                        </p>
+                        <ul class="space-y-3 mb-8">
+                            <li class="flex items-center text-slate-700 text-sm">
+                                <i data-lucide="check-circle-2" class="h-4 w-4 text-amber-500 mr-2"></i>
+                                Análisis de calidad de cascarón
+                            </li>
+                            <li class="flex items-center text-slate-700 text-sm">
+                                <i data-lucide="check-circle-2" class="h-4 w-4 text-amber-500 mr-2"></i>
+                                Comparativa entre granjas
+                            </li>
+                            <li class="flex items-center text-slate-700 text-sm">
+                                <i data-lucide="check-circle-2" class="h-4 w-4 text-amber-500 mr-2"></i>
+                                Alertas de desviación de estándar
+                            </li>
+                        </ul>
+                        <div class="flex flex-col sm:flex-row space-y-3 sm:space-y-0 sm:space-x-4">
+                            <button onclick="setActiveDemo('egg'); document.getElementById('demo').scrollIntoView({ behavior: 'smooth' });" class="text-amber-600 font-bold hover:text-amber-700 flex items-center">
+                                Ver Demo <i data-lucide="arrow-right" class="h-4 w-4 ml-1"></i>
+                            </button>
+                            <a 
+                                href="https://gemini.google.com/share/a53c1ccbb3b0" 
+                                target="_blank" 
+                                rel="noopener noreferrer"
+                                class="inline-flex items-center text-sm font-semibold text-slate-500 hover:text-blue-600 transition-colors bg-slate-100 hover:bg-blue-50 px-3 py-1.5 rounded-full"
+                            >
+                                Ir al Dashboard <i data-lucide="external-link" class="h-3 w-3 ml-1.5"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 2 - Lab Advice -->
+                <div class="group relative bg-slate-50 rounded-2xl border border-slate-200 hover:border-green-400 transition-all hover:shadow-xl overflow-hidden">
+                     <div class="h-48 w-full overflow-hidden relative">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent z-10"></div>
+                        <img 
+                            src="https://images.unsplash.com/photo-1574323347407-f5e1ad6d020b?auto=format&fit=crop&w=800&q=80" 
+                            alt="Granos de maiz y trigo para análisis" 
+                            class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                        />
+                         <div class="absolute bottom-4 left-6 z-20 text-white flex items-center">
+                            <i data-lucide="microscope" class="text-green-400 h-6 w-6 mr-2"></i>
+                            <span class="font-bold text-lg">Análisis de Insumos</span>
+                        </div>
+                    </div>
+
+                    <div class="p-8">
+                        <div class="flex justify-between items-start mb-4">
+                            <h3 class="text-2xl font-bold text-slate-900">Lab Advice</h3>
+                            <div class="bg-green-100 p-2 rounded-lg">
+                                <i data-lucide="microscope" class="text-green-600 h-6 w-6"></i>
+                            </div>
+                        </div>
+                        <p class="text-slate-600 mb-6 leading-relaxed">
+                            Evalúa el comportamiento de materias primas. Correlaciona el valor nutricional con origen, proveedor y estacionalidad.
+                        </p>
+                        <ul class="space-y-3 mb-8">
+                            <li class="flex items-center text-slate-700 text-sm">
+                                <i data-lucide="check-circle-2" class="h-4 w-4 text-green-500 mr-2"></i>
+                                Historial por Proveedor
+                            </li>
+                            <li class="flex items-center text-slate-700 text-sm">
+                                <i data-lucide="check-circle-2" class="h-4 w-4 text-green-500 mr-2"></i>
+                                Análisis de Proteína y Grasas
+                            </li>
+                            <li class="flex items-center text-slate-700 text-sm">
+                                <i data-lucide="check-circle-2" class="h-4 w-4 text-green-500 mr-2"></i>
+                                Impacto Estacional
+                            </li>
+                        </ul>
+                        <div class="flex flex-col sm:flex-row space-y-3 sm:space-y-0 sm:space-x-4">
+                            <button onclick="setActiveDemo('lab'); document.getElementById('demo').scrollIntoView({ behavior: 'smooth' });" class="text-green-600 font-bold hover:text-green-700 flex items-center">
+                                Ver Demo <i data-lucide="arrow-right" class="h-4 w-4 ml-1"></i>
+                            </button>
+                            <a 
+                                href="https://gemini.google.com/share/facc28a831bc" 
+                                target="_blank" 
+                                rel="noopener noreferrer"
+                                class="inline-flex items-center text-sm font-semibold text-slate-500 hover:text-blue-600 transition-colors bg-slate-100 hover:bg-blue-50 px-3 py-1.5 rounded-full"
+                            >
+                                Ir al Dashboard <i data-lucide="external-link" class="h-3 w-3 ml-1.5"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- --- NUEVA SECCIÓN: LA CIENCIA DE LA CALIDAD --- -->
+    <section id="calidad" class="py-24 bg-slate-50 relative overflow-hidden">
+        <!-- Decorative elements -->
+        <div class="absolute top-0 left-0 w-64 h-64 bg-amber-100 rounded-full mix-blend-multiply filter blur-3xl opacity-30 -translate-x-1/2 -translate-y-1/2"></div>
+        <div class="absolute bottom-0 right-0 w-96 h-96 bg-blue-100 rounded-full mix-blend-multiply filter blur-3xl opacity-30 translate-x-1/3 translate-y-1/3"></div>
+
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <span class="text-amber-600 font-bold tracking-wider uppercase text-sm">Por qué medir importa</span>
+                <h2 class="text-3xl md:text-4xl font-extrabold text-slate-900 mt-2 mb-6">
+                    La Calidad del Huevo no es Estética,<br/> es <span class="text-blue-600">Rentabilidad Pura</span>
+                </h2>
+                <p class="text-lg text-slate-600 leading-relaxed">
+                    Cada parámetro físico del huevo tiene un impacto directo en tu cadena de valor. 
+                    Pasar de la intuición a la medición estandarizada es el paso definitivo hacia la eficiencia avícola.
+                </p>
+            </div>
+
+            <div class="grid lg:grid-cols-3 gap-8">
+                
+                <!-- Pillar 1: Shell Strength (Blindaje del Producto) -->
+                <div class="bg-white rounded-2xl shadow-lg border border-slate-100 overflow-hidden group hover:-translate-y-2 transition-transform duration-300">
+                    <div class="h-56 relative overflow-hidden bg-slate-100">
+                        <div class="absolute inset-0 bg-gradient-to-t from-slate-900/60 to-transparent z-10"></div>
+                        <img 
+                          src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSZYXFWCIj-4TJTj4Ko45o9Te8v2qhZ4D5oH_AWQJ0eZx3tTDz1wyP3JvgnP64-ylisrUs&usqp=CAU" 
+                          alt="Gallina blanca en granja" 
+                          class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                          onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1519865391263-d42d76814b7e?auto=format&fit=crop&w=800&q=80'"
+                        />
+                        <div class="absolute bottom-4 left-6 z-20">
+                            <div class="bg-amber-500 text-white p-2 rounded-lg inline-block mb-2">
+                                <i data-lucide="shield-check" class="h-6 w-6"></i>
+                            </div>
+                            <h3 class="text-xl font-bold text-white">Blindaje del Producto</h3>
+                        </div>
+                    </div>
+                    <div class="p-8">
+                        <h4 class="font-bold text-slate-900 text-lg mb-3">Resistencia y Grosor</h4>
+                        <p class="text-slate-600 text-sm mb-4 leading-relaxed">
+                            ¿Sabías que un cascarón débil causa pérdidas del <span class="font-bold text-red-500">10-30%</span> en la recolección? Medir la eficiencia de deposición de calcio y estructura cristalina protege tu inversión.
+                        </p>
+                        <div class="bg-slate-50 p-3 rounded-lg border border-slate-100 text-xs text-slate-500 font-medium">
+                            Impacto: Minimiza mermas y optimiza el manejo nutricional por edad.
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Pillar 2: Yolk Quality (Valor Percibido) -->
+                <div class="bg-white rounded-2xl shadow-lg border border-slate-100 overflow-hidden group hover:-translate-y-2 transition-transform duration-300">
+                    <div class="h-56 relative overflow-hidden bg-slate-100">
+                        <div class="absolute inset-0 bg-gradient-to-t from-slate-900/60 to-transparent z-10"></div>
+                        <!-- Imagen del usuario: gallina con huevo roto -->
+                        <img 
+                          src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSMZO4G-WD7DDb0u7s2KnFX0o8OoJewxG8ipA&s" 
+                          alt="Yema de huevo y escala de color" 
+                          class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                        />
+                        
+                        <!-- ABANICO DE COLOR DIGITAL (CSS/HTML) -->
+                        <div class="absolute bottom-16 right-4 z-20 bg-white/90 backdrop-blur-md p-2 rounded-lg shadow-xl border border-slate-200 max-w-[180px]">
+                            <p class="text-[9px] font-bold text-slate-500 uppercase mb-1 text-center">Escala de Color</p>
+                            <div class="flex h-3 rounded-sm overflow-hidden">
+                                <div class="w-3 bg-[#FFF9C4]"></div>
+                                <div class="w-3 bg-[#FFF59D]"></div>
+                                <div class="w-3 bg-[#FFF176]"></div>
+                                <div class="w-3 bg-[#FFEB3B]"></div>
+                                <div class="w-3 bg-[#FDD835]"></div>
+                                <div class="w-3 bg-[#FBC02D]"></div>
+                                <div class="w-3 bg-[#F9A825]"></div>
+                                <div class="w-3 bg-[#F57F17] ring-2 ring-slate-800 z-10"></div> <!-- Selected Color -->
+                                <div class="w-3 bg-[#E65100]"></div>
+                                <div class="w-3 bg-[#BF360C]"></div>
+                            </div>
+                            <div class="flex justify-between mt-1 px-1">
+                                <span class="text-[8px] text-slate-400">1</span>
+                                <span class="text-[8px] text-slate-800 font-bold">13</span>
+                                <span class="text-[8px] text-slate-400">15</span>
+                            </div>
+                        </div>
+
+                        <div class="absolute bottom-4 left-6 z-20">
+                            <div class="bg-amber-400 text-white p-2 rounded-lg inline-block mb-2">
+                                <i data-lucide="eye" class="h-6 w-6"></i>
+                            </div>
+                            <h3 class="text-xl font-bold text-white">Valor Percibido</h3>
+                        </div>
+                    </div>
+                    <div class="p-8">
+                        <h4 class="font-bold text-slate-900 text-lg mb-3">Color y Firmeza de Yema</h4>
+                        <p class="text-slate-600 text-sm mb-4 leading-relaxed">
+                            El consumidor asocia el color intenso con valor nutricional. Detectar defectos o manchas asegura que tu marca sea sinónimo de calidad premium en el anaquel.
+                        </p>
+                        <div class="bg-slate-50 p-3 rounded-lg border border-slate-100 text-xs text-slate-500 font-medium">
+                            Impacto: Preferencia de compra y funcionalidad en industria alimentaria.
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Pillar 3: Data Management (Gestión Inteligente) -->
+                <div class="bg-white rounded-2xl shadow-lg border border-slate-100 overflow-hidden group hover:-translate-y-2 transition-transform duration-300">
+                    <div class="h-56 relative overflow-hidden bg-slate-900 flex items-center justify-center">
+                        <div class="absolute inset-0 bg-gradient-to-t from-slate-900/90 to-transparent z-10"></div>
+                        
+                        <!-- Simulated Graph Component -->
+                        <div class="h-full w-full p-6 pb-0 flex items-end justify-between space-x-1 opacity-80 group-hover:opacity-100 transition-opacity duration-500">
+                            <div style="height: 35%;" class="flex-1 bg-blue-500 rounded-t-sm"></div>
+                            <div style="height: 45%;" class="flex-1 bg-blue-500 rounded-t-sm"></div>
+                            <div style="height: 40%;" class="flex-1 bg-blue-500 rounded-t-sm"></div>
+                            <div style="height: 60%;" class="flex-1 bg-blue-500 rounded-t-sm"></div>
+                            <div style="height: 55%;" class="flex-1 bg-blue-500 rounded-t-sm"></div>
+                            <div style="height: 70%;" class="flex-1 bg-blue-500 rounded-t-sm"></div>
+                            <div style="height: 65%;" class="flex-1 bg-blue-500 rounded-t-sm"></div>
+                            <div style="height: 80%;" class="flex-1 bg-blue-500 rounded-t-sm"></div>
+                            <div style="height: 75%;" class="flex-1 bg-blue-500 rounded-t-sm"></div>
+                            <div style="height: 90%;" class="flex-1 bg-blue-500 rounded-t-sm"></div>
+                            <div style="height: 85%;" class="flex-1 bg-blue-500 rounded-t-sm"></div>
+                            <div style="height: 80%;" class="flex-1 bg-blue-500 rounded-t-sm"></div>
+                            <div style="height: 70%;" class="flex-1 bg-blue-500 rounded-t-sm"></div>
+                            <div style="height: 60%;" class="flex-1 bg-blue-500 rounded-t-sm"></div>
+                            <div style="height: 50%;" class="flex-1 bg-blue-500 rounded-t-sm"></div>
+                        </div>
+
+                        <div class="absolute bottom-4 left-6 z-20">
+                            <div class="bg-blue-600 text-white p-2 rounded-lg inline-block mb-2">
+                                <i data-lucide="database" class="h-6 w-6"></i>
+                            </div>
+                            <h3 class="text-xl font-bold text-white">Gestión Inteligente</h3>
+                        </div>
+                    </div>
+                    <div class="p-8">
+                        <h4 class="font-bold text-slate-900 text-lg mb-3">Centralización Digital</h4>
+                        <p class="text-slate-600 text-sm mb-4 leading-relaxed">
+                            De nada sirve medir si no analizas. Nuestro portal web permite visualizar tendencias históricas y actuar rápido ante desviaciones en granjas específicas.
+                        </p>
+                        <div class="bg-slate-50 p-3 rounded-lg border border-slate-100 text-xs text-slate-500 font-medium">
+                            Impacto: Toma de decisiones basada en datos para la mejora continua.
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- --- INTERACTIVE DEMO SECTION --- -->
+    <section id="demo" class="py-20 bg-slate-900 text-white overflow-hidden">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row justify-between items-end mb-10">
+                <div class="mb-6 md:mb-0">
+                    <h2 class="text-3xl font-bold mb-2">Plataforma Interactiva</h2>
+                    <p class="text-slate-400">Selecciona una aplicación para visualizar el tablero de control.</p>
+                </div>
+                <div class="flex bg-slate-800 p-1 rounded-lg">
+                    <button id="demo-egg-btn" onclick="setActiveDemo('egg')" class="px-6 py-2 rounded-md text-sm font-medium transition-all bg-amber-500 text-white shadow-lg">
+                        Egg Monitor
+                    </button>
+                    <button id="demo-lab-btn" onclick="setActiveDemo('lab')" class="px-6 py-2 rounded-md text-sm font-medium transition-all text-slate-400 hover:text-white">
+                        Lab Advice
+                    </button>
+                </div>
+            </div>
+
+            <!-- Mock Dashboard Window -->
+            <div class="bg-slate-100 rounded-xl overflow-hidden shadow-2xl border border-slate-700 min-h-[500px] text-slate-800 transition-all duration-500">
+                <!-- Window Header -->
+                <div class="bg-white border-b border-slate-200 px-4 py-3 flex justify-between items-center">
+                    <div class="flex space-x-2">
+                        <div class="h-3 w-3 rounded-full bg-red-400"></div>
+                        <div class="h-3 w-3 rounded-full bg-amber-400"></div>
+                        <div class="h-3 w-3 rounded-full bg-green-400"></div>
+                    </div>
+                    <div id="demo-url" class="bg-slate-100 px-4 py-1 rounded text-xs text-slate-500 font-mono">
+                        app.eggmonitor.com/dashboard
+                    </div>
+                    <div class="text-slate-400">
+                        <i data-lucide="users" class="h-4 w-4"></i>
+                    </div>
+                </div>
+
+                <!-- Dashboard Content -->
+                <div id="demo-content" class="p-6">
+                    <!-- Contenido inicial (Egg Monitor) -->
+                    <div id="content-egg">
+                        <div class="animate-in fade-in zoom-in duration-300">
+                            <!-- EGG MONITOR MOCKUP -->
+                            <div class="flex justify-between items-center mb-6 border-b border-slate-100 pb-4">
+                                <div class="flex items-center">
+                                    <div class="h-12 w-12 rounded-full overflow-hidden mr-4 border-2 border-slate-200">
+                                        <img src="https://images.unsplash.com/photo-1548550023-2bdb3c5beed7?auto=format&fit=crop&w=150&q=80" alt="Granja" class="h-full w-full object-cover" />
+                                    </div>
+                                    <div>
+                                        <h3 class="text-xl font-bold text-slate-800 flex items-center">
+                                            Reporte de Calidad
+                                        </h3>
+                                        <p class="text-sm text-slate-500">Granja Norte • Lote #402</p>
+                                    </div>
+                                </div>
+                                <div class="flex space-x-2">
+                                    <span class="bg-white border px-3 py-1 rounded text-sm text-slate-600">Últimos 30 días</span>
+                                    <span class="bg-blue-600 text-white px-3 py-1 rounded text-sm">Exportar PDF</span>
+                                </div>
+                            </div>
+
+                            <!-- KPI Cards -->
+                            <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
+                                <div class="bg-white p-4 rounded-lg shadow-sm border border-slate-200">
+                                    <div class="text-xs text-slate-500 uppercase font-bold">Peso Promedio</div>
+                                    <div class="text-2xl font-bold mt-1 text-slate-800">63.4g</div>
+                                    <div class="text-xs text-green-600 mt-1">En rango óptimo</div>
+                                </div>
+                                <div class="bg-white p-4 rounded-lg shadow-sm border border-slate-200">
+                                    <div class="text-xs text-slate-500 uppercase font-bold">Unidades Haugh</div>
+                                    <div class="text-2xl font-bold mt-1 text-slate-800">88.2</div>
+                                    <div class="text-xs text-green-600 mt-1">Calidad AA</div>
+                                </div>
+                                <div class="bg-white p-4 rounded-lg shadow-sm border border-slate-200">
+                                    <div class="text-xs text-slate-500 uppercase font-bold">Resistencia</div>
+                                    <div class="text-2xl font-bold mt-1 text-slate-800">4.5 kgf</div>
+                                    <div class="text-xs text-amber-600 mt-1">Alerta Leve (-2%)</div>
+                                </div>
+                                <div class="bg-white p-4 rounded-lg shadow-sm border border-slate-200">
+                                    <div class="text-xs text-slate-500 uppercase font-bold">Color Yema</div>
+                                    <div class="text-2xl font-bold mt-1 text-amber-500">DS 14</div>
+                                    <div class="text-xs text-slate-400 mt-1">Pigmentación OK</div>
+                                </div>
+                            </div>
+
+                            <!-- Chart Area -->
+                            <div class="grid md:grid-cols-3 gap-6">
+                                <div class="md:col-span-2 bg-white p-6 rounded-lg shadow-sm border border-slate-200">
+                                    <h4 class="font-semibold text-slate-700 mb-4">Tendencia de Peso vs Edad</h4>
+                                    <div class="h-48 flex items-end justify-between space-x-2 px-2">
+                                         <!-- Simulated Line Chart using bars for demo simplicity -->
+                                         <div style="height: 55%;" class="flex flex-col items-center w-full group relative">
+                                            <div class="w-full bg-blue-500 rounded-t opacity-80 group-hover:opacity-100 transition-all relative">
+                                                <div class="absolute -top-8 left-1/2 -translate-x-1/2 bg-slate-800 text-white text-xs px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap z-10">Semana 20: 55g</div>
+                                            </div>
+                                            <div class="h-[1px] w-full bg-slate-200 mt-1"></div>
+                                            <span class="text-[10px] text-slate-400 mt-1">S20</span>
+                                         </div>
+                                         <div style="height: 58%;" class="flex flex-col items-center w-full group relative">
+                                            <div class="w-full bg-blue-500 rounded-t opacity-80 group-hover:opacity-100 transition-all relative">
+                                                <div class="absolute -top-8 left-1/2 -translate-x-1/2 bg-slate-800 text-white text-xs px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap z-10">Semana 21: 58g</div>
+                                            </div>
+                                            <div class="h-[1px] w-full bg-slate-200 mt-1"></div>
+                                            <span class="text-[10px] text-slate-400 mt-1">S21</span>
+                                         </div>
+                                         <div style="height: 60%;" class="flex flex-col items-center w-full group relative">
+                                            <div class="w-full bg-blue-500 rounded-t opacity-80 group-hover:opacity-100 transition-all relative">
+                                                <div class="absolute -top-8 left-1/2 -translate-x-1/2 bg-slate-800 text-white text-xs px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap z-10">Semana 22: 60g</div>
+                                            </div>
+                                            <div class="h-[1px] w-full bg-slate-200 mt-1"></div>
+                                            <span class="text-[10px] text-slate-400 mt-1">S22</span>
+                                         </div>
+                                         <div style="height: 62%;" class="flex flex-col items-center w-full group relative">
+                                            <div class="w-full bg-blue-500 rounded-t opacity-80 group-hover:opacity-100 transition-all relative">
+                                                <div class="absolute -top-8 left-1/2 -translate-x-1/2 bg-slate-800 text-white text-xs px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap z-10">Semana 23: 62g</div>
+                                            </div>
+                                            <div class="h-[1px] w-full bg-slate-200 mt-1"></div>
+                                            <span class="text-[10px] text-slate-400 mt-1">S23</span>
+                                         </div>
+                                         <div style="height: 63%;" class="flex flex-col items-center w-full group relative">
+                                            <div class="w-full bg-blue-500 rounded-t opacity-80 group-hover:opacity-100 transition-all relative">
+                                                <div class="absolute -top-8 left-1/2 -translate-x-1/2 bg-slate-800 text-white text-xs px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap z-10">Semana 24: 63g</div>
+                                            </div>
+                                            <div class="h-[1px] w-full bg-slate-200 mt-1"></div>
+                                            <span class="text-[10px] text-slate-400 mt-1">S24</span>
+                                         </div>
+                                         <div style="height: 63.5%;" class="flex flex-col items-center w-full group relative">
+                                            <div class="w-full bg-blue-500 rounded-t opacity-80 group-hover:opacity-100 transition-all relative">
+                                                <div class="absolute -top-8 left-1/2 -translate-x-1/2 bg-slate-800 text-white text-xs px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap z-10">Semana 25: 63.5g</div>
+                                            </div>
+                                            <div class="h-[1px] w-full bg-slate-200 mt-1"></div>
+                                            <span class="text-[10px] text-slate-400 mt-1">S25</span>
+                                         </div>
+                                         <div style="height: 64%;" class="flex flex-col items-center w-full group relative">
+                                            <div class="w-full bg-blue-500 rounded-t opacity-80 group-hover:opacity-100 transition-all relative">
+                                                <div class="absolute -top-8 left-1/2 -translate-x-1/2 bg-slate-800 text-white text-xs px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap z-10">Semana 26: 64g</div>
+                                            </div>
+                                            <div class="h-[1px] w-full bg-slate-200 mt-1"></div>
+                                            <span class="text-[10px] text-slate-400 mt-1">S26</span>
+                                         </div>
+                                         <div style="height: 63%;" class="flex flex-col items-center w-full group relative">
+                                            <div class="w-full bg-blue-500 rounded-t opacity-80 group-hover:opacity-100 transition-all relative">
+                                                <div class="absolute -top-8 left-1/2 -translate-x-1/2 bg-slate-800 text-white text-xs px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap z-10">Semana 27: 63g</div>
+                                            </div>
+                                            <div class="h-[1px] w-full bg-slate-200 mt-1"></div>
+                                            <span class="text-[10px] text-slate-400 mt-1">S27</span>
+                                         </div>
+                                         <div style="height: 62%;" class="flex flex-col items-center w-full group relative">
+                                            <div class="w-full bg-blue-500 rounded-t opacity-80 group-hover:opacity-100 transition-all relative">
+                                                <div class="absolute -top-8 left-1/2 -translate-x-1/2 bg-slate-800 text-white text-xs px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap z-10">Semana 28: 62g</div>
+                                            </div>
+                                            <div class="h-[1px] w-full bg-slate-200 mt-1"></div>
+                                            <span class="text-[10px] text-slate-400 mt-1">S28</span>
+                                         </div>
+                                         <div style="height: 61%;" class="flex flex-col items-center w-full group relative">
+                                            <div class="w-full bg-blue-500 rounded-t opacity-80 group-hover:opacity-100 transition-all relative">
+                                                <div class="absolute -top-8 left-1/2 -translate-x-1/2 bg-slate-800 text-white text-xs px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap z-10">Semana 29: 61g</div>
+                                            </div>
+                                            <div class="h-[1px] w-full bg-slate-200 mt-1"></div>
+                                            <span class="text-[10px] text-slate-400 mt-1">S29</span>
+                                         </div>
+                                         <div style="height: 60%;" class="flex flex-col items-center w-full group relative">
+                                            <div class="w-full bg-blue-500 rounded-t opacity-80 group-hover:opacity-100 transition-all relative">
+                                                <div class="absolute -top-8 left-1/2 -translate-x-1/2 bg-slate-800 text-white text-xs px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap z-10">Semana 30: 60g</div>
+                                            </div>
+                                            <div class="h-[1px] w-full bg-slate-200 mt-1"></div>
+                                            <span class="text-[10px] text-slate-400 mt-1">S30</span>
+                                         </div>
+                                         <div style="height: 59%;" class="flex flex-col items-center w-full group relative">
+                                            <div class="w-full bg-blue-500 rounded-t opacity-80 group-hover:opacity-100 transition-all relative">
+                                                <div class="absolute -top-8 left-1/2 -translate-x-1/2 bg-slate-800 text-white text-xs px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap z-10">Semana 31: 59g</div>
+                                            </div>
+                                            <div class="h-[1px] w-full bg-slate-200 mt-1"></div>
+                                            <span class="text-[10px] text-slate-400 mt-1">S31</span>
+                                         </div>
+                                    </div>
+                                </div>
+                                <div class="bg-white p-6 rounded-lg shadow-sm border border-slate-200">
+                                    <h4 class="font-semibold text-slate-700 mb-4">Alertas Recientes</h4>
+                                    <div class="space-y-4">
+                                        <div class="flex items-start space-x-3 text-sm">
+                                            <i data-lucide="alert-circle" class="h-5 w-5 text-red-500 shrink-0"></i>
+                                            <div>
+                                                <p class="font-medium text-slate-800">Cascarón Delgado</p>
+                                                <p class="text-slate-500 text-xs">Lote 402 - Ayer, 14:00</p>
+                                            </div>
+                                        </div>
+                                        <div class="flex items-start space-x-3 text-sm">
+                                            <i data-lucide="alert-circle" class="h-5 w-5 text-amber-500 shrink-0"></i>
+                                            <div>
+                                                <p class="font-medium text-slate-800">Bajo Peso</p>
+                                                <p class="text-slate-500 text-xs">Lote 105 - Hoy, 09:30</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Contenido Lab Advice (Inicialmente oculto) -->
+                    <div id="content-lab" class="hidden">
+                        <div class="animate-in fade-in zoom-in duration-300">
+                            <!-- LAB ADVICE MOCKUP -->
+                            <div class="flex justify-between items-center mb-6 border-b border-slate-100 pb-4">
+                                <div class="flex items-center">
+                                    <div class="h-12 w-12 rounded-full overflow-hidden mr-4 border-2 border-slate-200">
+                                        <img src="https://images.unsplash.com/photo-1474631245212-32dc3c8310c6?auto=format&fit=crop&w=150&q=80" alt="Maiz" class="h-full w-full object-cover" />
+                                    </div>
+                                    <div>
+                                        <h3 class="text-xl font-bold text-slate-800 flex items-center">
+                                            Análisis Materia Prima
+                                        </h3>
+                                        <p class="text-sm text-slate-500">Maíz Amarillo • Pasta de Soya</p>
+                                    </div>
+                                </div>
+                                <div class="flex space-x-2">
+                                    <span class="bg-white border px-3 py-1 rounded text-sm text-slate-600">Proveedor A vs B</span>
+                                    <span class="bg-green-600 text-white px-3 py-1 rounded text-sm">Nuevo Análisis</span>
+                                </div>
+                            </div>
+
+                            <!-- Comparison Table/Grid -->
+                            <div class="bg-white rounded-lg shadow-sm border border-slate-200 overflow-hidden mb-6">
+                                <div class="grid grid-cols-4 bg-slate-50 p-3 border-b border-slate-200 text-sm font-bold text-slate-700">
+                                    <div>Parámetro</div>
+                                    <div>Estándar</div>
+                                    <div class="text-green-700">Prov. AgroInsumos</div>
+                                    <div class="text-blue-700">Prov. GlobalFeed</div>
+                                </div>
+                                <div class="grid grid-cols-4 p-3 border-b border-slate-100 text-sm hover:bg-slate-50">
+                                    <div class="font-medium">Proteína Cruda</div>
+                                    <div class="text-slate-500">46.0% min</div>
+                                    <div class="text-green-700 font-bold">46.8%</div>
+                                    <div class="text-red-500 font-bold flex items-center">45.2% <i data-lucide="trending-up" class="h-3 w-3 ml-1 rotate-180"></i></div>
+                                </div>
+                                <div class="grid grid-cols-4 p-3 border-b border-slate-100 text-sm hover:bg-slate-50">
+                                    <div class="font-medium">Humedad</div>
+                                    <div class="text-slate-500">12.0% max</div>
+                                    <div class="text-green-700">11.5%</div>
+                                    <div class="text-blue-700">11.8%</div>
+                                </div>
+                                <div class="grid grid-cols-4 p-3 border-b border-slate-100 text-sm hover:bg-slate-50">
+                                    <div class="font-medium">Grasa</div>
+                                    <div class="text-slate-500">1.5% min</div>
+                                    <div class="text-green-700">1.6%</div>
+                                    <div class="text-blue-700">1.9%</div>
+                                </div>
+                             </div>
+
+                             <div class="grid md:grid-cols-2 gap-6">
+                                <div class="bg-white p-5 rounded-lg border border-slate-200">
+                                    <h4 class="font-semibold text-slate-700 mb-2">Comportamiento Estacional (Proteína)</h4>
+                                    <div class="h-32 flex items-end space-x-1">
+                                        <div style="height: 40%;" class="flex-1 bg-green-200 hover:bg-green-500 transition-colors rounded-t"></div>
+                                        <div style="height: 45%;" class="flex-1 bg-green-200 hover:bg-green-500 transition-colors rounded-t"></div>
+                                        <div style="height: 60%;" class="flex-1 bg-green-200 hover:bg-green-500 transition-colors rounded-t"></div>
+                                        <div style="height: 70%;" class="flex-1 bg-green-200 hover:bg-green-500 transition-colors rounded-t"></div>
+                                        <div style="height: 65%;" class="flex-1 bg-green-200 hover:bg-green-500 transition-colors rounded-t"></div>
+                                        <div style="height: 50%;" class="flex-1 bg-green-200 hover:bg-green-500 transition-colors rounded-t"></div>
+                                        <div style="height: 45%;" class="flex-1 bg-green-200 hover:bg-green-500 transition-colors rounded-t"></div>
+                                        <div style="height: 55%;" class="flex-1 bg-green-200 hover:bg-green-500 transition-colors rounded-t"></div>
+                                        <div style="height: 65%;" class="flex-1 bg-green-200 hover:bg-green-500 transition-colors rounded-t"></div>
+                                        <div style="height: 75%;" class="flex-1 bg-green-200 hover:bg-green-500 transition-colors rounded-t"></div>
+                                        <div style="height: 80%;" class="flex-1 bg-green-200 hover:bg-green-500 transition-colors rounded-t"></div>
+                                        <div style="height: 70%;" class="flex-1 bg-green-200 hover:bg-green-500 transition-colors rounded-t"></div>
+                                    </div>
+                                    <div class="flex justify-between text-xs text-slate-400 mt-2">
+                                        <span>Ene</span><span>Jun</span><span>Dic</span>
+                                    </div>
+                                </div>
+                                <div class="bg-white p-5 rounded-lg border border-slate-200">
+                                    <h4 class="font-semibold text-slate-700 mb-2">Evaluación de Proveedor</h4>
+                                    <div class="space-y-3">
+                                        <div>
+                                            <div class="flex justify-between text-sm mb-1">
+                                                <span>AgroInsumos</span>
+                                                <span class="font-bold text-green-600">98/100</span>
+                                            </div>
+                                            <div class="w-full bg-slate-100 rounded-full h-2">
+                                                <div class="bg-green-500 h-2 rounded-full" style="width: 98%;"></div>
+                                            </div>
+                                        </div>
+                                        <div>
+                                            <div class="flex justify-between text-sm mb-1">
+                                                <span>GlobalFeed</span>
+                                                <span class="font-bold text-amber-500">85/100</span>
+                                            </div>
+                                            <div class="w-full bg-slate-100 rounded-full h-2">
+                                                <div class="bg-amber-500 h-2 rounded-full" style="width: 85%;"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                             </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    <!-- --- BENEFITS / TARGET AUDIENCE --- -->
+    <section id="beneficios" class="py-20 bg-slate-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold text-slate-900">¿A quién ayudamos?</h2>
+                <p class="mt-4 text-slate-600">Herramientas diseñadas para cada rol clave en la industria.</p>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-6">
+                <div class="bg-white p-6 rounded-xl shadow-sm border border-slate-100 hover:shadow-md transition">
+                    <div class="bg-blue-100 w-12 h-12 rounded-full flex items-center justify-center mb-4">
+                        <i data-lucide="users" class="text-blue-600 h-6 w-6"></i>
+                    </div>
+                    <h3 class="font-bold text-lg mb-2">Gerentes de Compras</h3>
+                    <p class="text-slate-600 text-sm">
+                        Negocia con proveedores basándote en datos históricos reales de calidad. Deja de pagar por materia prima que no cumple los estándares.
+                    </p>
+                </div>
+                <div class="bg-white p-6 rounded-xl shadow-sm border border-slate-100 hover:shadow-md transition">
+                    <div class="bg-amber-100 w-12 h-12 rounded-full flex items-center justify-center mb-4">
+                        <i data-lucide="activity" class="text-amber-600 h-6 w-6"></i>
+                    </div>
+                    <h3 class="font-bold text-lg mb-2">Nutriólogos</h3>
+                    <p class="text-slate-600 text-sm">
+                        Ajusta tus fórmulas con precisión conociendo el contenido nutrimental exacto de cada lote y su variación estacional.
+                    </p>
+                </div>
+                <div class="bg-white p-6 rounded-xl shadow-sm border border-slate-100 hover:shadow-md transition">
+                    <div class="bg-red-100 w-12 h-12 rounded-full flex items-center justify-center mb-4">
+                        <i data-lucide="bar-chart-3" class="text-red-600 h-6 w-6"></i>
+                    </div>
+                    <h3 class="font-bold text-lg mb-2">Gerentes de Producción</h3>
+                    <p class="text-slate-600 text-sm">
+                        Detecta problemas en granja rápidamente. Analiza si la baja calidad de huevo se debe a la línea genética, edad o nutrición.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- --- CTA / FOOTER --- -->
+    <footer id="contacto" class="bg-slate-900 text-white pt-20 pb-10">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid md:grid-cols-2 gap-12 mb-16">
+                <div>
+                    <h2 class="text-3xl font-bold mb-4">¿Listo para optimizar tu producción?</h2>
+                    <p class="text-slate-400 mb-8 max-w-md">
+                        Agenda una demostración personalizada hoy mismo y descubre cómo nuestras herramientas pueden mejorar la rentabilidad de tu negocio pecuario.
+                    </p>
+                    <div class="flex space-x-4">
+                        <button onclick="document.getElementById('form-nombre').focus();" class="bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg font-bold transition">
+                            Contactar Ventas
+                        </button>
+                    </div>
+                </div>
+                <div class="bg-slate-800 p-8 rounded-xl border border-slate-700">
+                    <form id="contact-form" class="space-y-4" action="https://formspree.io/f/xovzbzpd" method="POST">
+    <div class="grid grid-cols-2 gap-4">
+        <input 
+          type="text" 
+          id="form-nombre"
+          name="nombre"
+          placeholder="Nombre" 
+          class="bg-slate-700 border border-slate-600 rounded p-3 text-white placeholder-slate-400 focus:outline-none focus:border-blue-500 w-full" 
+          required
+        />
+        <input 
+          type="text" 
+          name="empresa"
+          placeholder="Empresa" 
+          class="bg-slate-700 border border-slate-600 rounded p-3 text-white placeholder-slate-400 focus:outline-none focus:border-blue-500 w-full" 
+        />
+    </div>
+    <input 
+      type="email" 
+      name="email"
+      placeholder="Correo Electrónico" 
+      class="bg-slate-700 border border-slate-600 rounded p-3 text-white w-full placeholder-slate-400 focus:outline-none focus:border-blue-500" 
+      required
+    />
+    <select 
+      name="interes"
+      class="bg-slate-700 border border-slate-600 rounded p-3 text-white w-full text-slate-300 focus:outline-none focus:border-blue-500"
+    >
+        <option value="Interesado en Egg Monitor">Interesado en Egg Monitor</option>
+        <option value="Interesado en Lab Advice">Interesado en Lab Advice</option>
+        <option value="Ambos">Ambos</option>
+    </select>
+    <button id="form-submit-btn" type="submit" class="w-full font-bold py-3 rounded transition flex items-center justify-center bg-white text-slate-900 hover:bg-slate-200">
+      Enviar Mensaje 
+    </button>
+</form>
+                </div>
+            </div>
+
+            <div class="border-t border-slate-800 pt-8 flex flex-col md:flex-row justify-between items-center text-sm text-slate-500">
+                <div class="flex items-center space-x-2 mb-4 md:mb-0">
+                    <i data-lucide="activity" class="h-5 w-5 text-blue-600"></i>
+                    <span class="font-semibold text-slate-300">App 
+
+
+Control</span>
+                </div>
+                <div>
+                    &copy; 2025 App Control. Todos los derechos reservados.
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Inicializar los iconos de Lucide
+        lucide.createIcons();
+
+        // --- LÓGICA DEL MENÚ MÓVIL ---
+        const menuButton = document.getElementById('menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const menuIconOpen = document.getElementById('menu-icon-open');
+        const menuIconClose = document.getElementById('menu-icon-close');
+
+        menuButton.addEventListener('click', () => {
+            const isMenuOpen = mobileMenu.classList.toggle('hidden');
+            menuIconOpen.classList.toggle('hidden', !isMenuOpen);
+            menuIconClose.classList.toggle('hidden', isMenuOpen);
+        });
+
+        // Cierra el menú móvil al hacer clic en un enlace
+        document.querySelectorAll('#mobile-menu a').forEach(item => {
+            item.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+                menuIconOpen.classList.remove('hidden');
+                menuIconClose.classList.add('hidden');
+            });
+        });
+
+        // --- LÓGICA DE SIMULACIÓN DEL FORMULARIO ---
+        const contactForm = document.getElementById('contact-form');
+        const submitBtn = document.getElementById('form-submit-btn');
+
+        contactForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // 1. Deshabilitar y mostrar estado de envío
+            submitBtn.disabled = true;
+            submitBtn.textContent = 'Enviando...';
+            submitBtn.classList.remove('bg-white', 'hover:bg-slate-200');
+            submitBtn.classList.add('bg-blue-600', 'text-white', 'hover:bg-blue-700');
+
+            // 2. Simulación de retardo de envío (1.5 segundos)
+            setTimeout(() => {
+                // 3. Mostrar éxito
+                submitBtn.textContent = '¡Mensaje Enviado!';
+                submitBtn.classList.remove('bg-blue-600', 'hover:bg-blue-700');
+                submitBtn.classList.add('bg-green-600', 'hover:bg-green-700');
+
+                // Opcional: limpiar el formulario después del éxito
+                contactForm.reset(); 
+
+                // 4. Volver al estado inicial después de un tiempo
+                setTimeout(() => {
+                    submitBtn.textContent = 'Enviar Mensaje';
+                    submitBtn.disabled = false;
+                    submitBtn.classList.remove('bg-green-600', 'hover:bg-green-700');
+                    submitBtn.classList.add('bg-white', 'text-slate-900', 'hover:bg-slate-200');
+                }, 3000);
+
+            }, 1500);
+        });
+
+        // --- LÓGICA DEL DEMO INTERACTIVO ---
+        const contentEgg = document.getElementById('content-egg');
+        const contentLab = document.getElementById('content-lab');
+        const demoUrl = document.getElementById('demo-url');
+        const demoEggBtn = document.getElementById('demo-egg-btn');
+        const demoLabBtn = document.getElementById('demo-lab-btn');
+
+        // Función global para cambiar el demo activo
+        window.setActiveDemo = function(app) {
+            if (app === 'egg') {
+                // Mostrar Egg Monitor
+                contentEgg.classList.remove('hidden');
+                contentLab.classList.add('hidden');
+                demoUrl.textContent = 'app.eggmonitor.com/dashboard';
+                
+                // Estilos de botones
+                demoEggBtn.classList.add('bg-amber-500', 'text-white', 'shadow-lg');
+                demoEggBtn.classList.remove('bg-slate-800', 'text-slate-400', 'hover:text-white', 'shadow-none');
+                
+                demoLabBtn.classList.remove('bg-green-600', 'text-white', 'shadow-lg');
+                demoLabBtn.classList.add('bg-slate-800', 'text-slate-400', 'hover:text-white', 'shadow-none');
+
+            } else if (app === 'lab') {
+                // Mostrar Lab Advice
+                contentEgg.classList.add('hidden');
+                contentLab.classList.remove('hidden');
+                demoUrl.textContent = 'app.labadvice.com/analytics';
+                
+                // Estilos de botones
+                demoEggBtn.classList.remove('bg-amber-500', 'text-white', 'shadow-lg');
+                demoEggBtn.classList.add('bg-slate-800', 'text-slate-400', 'hover:text-white', 'shadow-none');
+
+                demoLabBtn.classList.add('bg-green-600', 'text-white', 'shadow-lg');
+                demoLabBtn.classList.remove('bg-slate-800', 'text-slate-400', 'hover:text-white', 'shadow-none');
+            }
+        }
+
+        // Ejecutar Lucide de nuevo después de cargar el contenido dinámico (aunque en este caso es estático)
+        window.addEventListener('load', () => {
+            lucide.createIcons();
+        });
+
+    </script>
+
+</body>
+</html>
